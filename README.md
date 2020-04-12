@@ -8,6 +8,12 @@ This project is *heavily* inspired by [Bitly](https://bitly.com/), hence the nam
  - **Charts**: Using the above statistics for pie charts, line charts and possibly more.
  - **Custom Links**: Registered users can create custom shortened links  (e.g. `Bytely.com/MyCustomLink`).
 
+# Want to help?
+**Backend:**
+At the moment I'm not looking for any help with the Backend, if you notice any significant flaws or some improvements, sure go ahead and create a pull request, but I want to figure out the backend feature implementation by myself. If you have any suggestions / ideas make a pull request, I'll always e reading them.
+
+**Frontend:**
+Go nuts! This is not API based so I'm using the Jinja2 templating engine. If you know how to use it and want to write some HTML, CSS, JS feel free to make a pull request and I'll take a look at it!
 
 # How to install
 
@@ -21,4 +27,3 @@ This project is *heavily* inspired by [Bitly](https://bitly.com/), hence the nam
  2. Make sure you are in the directory that contains the ``run.py`` file.
  3. Type ``python run.py´´
  4. The Flask app will now run on a development server at ``http://127.0.0.1:5000``
-
