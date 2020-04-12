@@ -1,6 +1,0 @@
-Add link shortener creation in index if logged in
-Better 404 - link not found HTML
-Better HTML, CSS, BOOTSTRAP
-(E-mail verifiction?)
-Custom shortened links (E-mail verifiction to use feature?)
-

@@ -1,9 +1,12 @@
+"""Database models"""
 from datetime import datetime
-from flask import current_app
-from nibble_flask import db, login_manager
-from flask_login import UserMixin
 from random import choices
 import string
+
+from flask_login import UserMixin
+
+from bytely import db, login_manager
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -22,17 +25,17 @@ class User(UserMixin, db.Model):
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_link = db.Column(db.String(512))
+    # TODO Change string size to something larger when adding custom links.
     short_link = db.Column(db.String(3), unique=True)
     date_created = db.Column(db.DateTime, default=datetime.now)
+    # TODO Click Model instead (DB overhaul).
     times_clicked = db.Column(db.Integer, default=0)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.short_link = self.generate_short_link()
-
 
     def generate_short_link(self):
         characters = string.digits + string.ascii_letters
@@ -43,5 +46,5 @@ class Link(db.Model):
 
         if link:
             return self.generate_short_link()
-        
+
         return short_link

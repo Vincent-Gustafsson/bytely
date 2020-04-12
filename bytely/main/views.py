@@ -1,8 +1,11 @@
+"""Blueprint that handles the main parts e.g. the index page"""
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
-from nibble_flask.models import db, User, Link
+
+from bytely.models import User
 
 main = Blueprint("main", __name__)
+
 
 @main.route("/")
 def index():
@@ -14,4 +17,4 @@ def index():
 def dashboard():
     links = User.query.filter_by(id=current_user.id).first().links
 
-    return render_template("dashboard.html", user = current_user, links=links)
+    return render_template("dashboard.html", user=current_user, links=links)

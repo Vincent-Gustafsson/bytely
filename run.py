@@ -1,4 +1,4 @@
-from nibble_flask import create_app
+from bytely import create_app
 
 app = create_app()
 

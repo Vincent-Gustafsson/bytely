@@ -1,16 +1,19 @@
+"""Blueprint that handles everything with the links"""
 from flask import Blueprint, render_template, request, redirect, url_for, abort
 from flask_login import login_required, current_user
-from nibble_flask.models import db, User, Link
+
+from bytely.models import db, Link
 
 links = Blueprint("links", __name__)
+
 
 @links.route("/create-link", methods=["POST"])
 @login_required
 def create_link():
     full_link = request.form.get("link")
-    
+
     link = Link(full_link=full_link, user_id=current_user.id)
-    
+
     db.session.add(link)
     db.session.commit()
 
@@ -28,7 +31,8 @@ def redirect_to_url(short_link):
     else:
         abort(404)
 
-
+# Custom 404 error to display when a user tries to
+# access a link that doesn't exist.
 @links.errorhandler(404)
 def page_not_found(error):
-   return render_template('404.html', title = "404"), 404
+    return render_template('404.html', title="404"), 404
