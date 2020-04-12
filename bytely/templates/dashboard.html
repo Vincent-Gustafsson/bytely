@@ -27,9 +27,9 @@
         {% for link in links %}
           <tr>
             <td style="word-wrap: break-word; max-width: 150px;"><a href="{{ link.full_link }}">{{ link.full_link }}</a></td>
-            <td><a href="bytely.com/{{ link.short_link }}">bytely.com/{{ link.short_link }}</td>
+            <td><a href="{{ host }}{{ link.short_link }}">{{ host }}{{ link.short_link }}</td>
             <td>{{ link.date_created }}</td>
-            <td>{{ link.times_clicked }}</td>
+            <td>{{ link.amount }}</td>
           </tr>
         {% endfor %}
       </tbody>

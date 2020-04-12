@@ -1,5 +1,5 @@
 """Blueprint that handles the main parts e.g. the index page"""
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 
 from bytely.models import User
@@ -16,5 +16,7 @@ def index():
 @login_required
 def dashboard():
     links = User.query.filter_by(id=current_user.id).first().links
-
-    return render_template("dashboard.html", user=current_user, links=links)
+    return render_template("dashboard.html",
+                           user=current_user,
+                           links=links,
+                           host=request.url_root)

@@ -1,8 +1,11 @@
 """Blueprint that handles everything with the links"""
+import requests
+import json
+
 from flask import Blueprint, render_template, request, redirect, url_for, abort
 from flask_login import login_required, current_user
 
-from bytely.models import db, Link
+from bytely.models import db, Link, Click
 
 links = Blueprint("links", __name__)
 
@@ -22,11 +25,27 @@ def create_link():
 
 @links.route("/<short_link>")
 def redirect_to_url(short_link):
+    # This block gets the users geolocation data.
+    api_url = f"http://ip-api.com/json/{request.remote_addr}"
+    r = requests.get(api_url)
+    geolocation = json.loads(r.text)
+
+    country = ""
+
+    if geolocation["status"] == "fail":
+        country = "None"
+    else:
+        country = geolocation["country"]
+
     link = Link.query.filter_by(short_link=short_link).first()
 
     if link:
-        link.times_clicked = link.times_clicked + 1
+        click = Click(country=country, link_id=link.id)
+        link.amount = len(link.clicks) + 1
+
+        db.session.add(click)
         db.session.commit()
+
         return redirect(link.full_link)
     else:
         abort(404)

@@ -10,6 +10,7 @@ flask = "*"
 flask-sqlalchemy = "*"
 flask-login = "*"
 bcrypt = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"

@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(128))
+    date_created = db.Column(db.DateTime, default=datetime.now)
 
     links = db.relationship('Link', backref='user', lazy=True)
 
@@ -25,12 +26,11 @@ class User(UserMixin, db.Model):
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_link = db.Column(db.String(512))
-    # TODO Change string size to something larger when adding custom links.
-    short_link = db.Column(db.String(3), unique=True)
+    short_link = db.Column(db.String(16), unique=True)
     date_created = db.Column(db.DateTime, default=datetime.now)
-    # TODO Click Model instead (DB overhaul).
-    times_clicked = db.Column(db.Integer, default=0)
+    amount = db.Column(db.Integer, default=0)
 
+    clicks = db.relationship('Click', backref='link', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, **kwargs):
@@ -48,3 +48,11 @@ class Link(db.Model):
             return self.generate_short_link()
 
         return short_link
+
+
+class Click(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, default=datetime.now)
+    country = db.Column(db.String(64))
+
+    link_id = db.Column(db.Integer, db.ForeignKey('link.id'))

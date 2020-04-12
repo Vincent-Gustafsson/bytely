@@ -43,6 +43,7 @@ def signup_post():
     email = request.form.get("email")
     username = request.form.get("username")
     password = request.form.get("password")
+    remember = True if request.form.get("remember") else False
 
     user = User.query.filter_by(email=email).first()
 
@@ -57,7 +58,7 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    login_user(new_user)
+    login_user(new_user, remember=remember)
     return redirect(url_for("main.dashboard"))
 
 
