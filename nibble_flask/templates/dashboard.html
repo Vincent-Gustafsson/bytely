@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="title">
+    Welcome, {{ user.username }}
+  </h1>
+
+  <form action="/create-link" method="POST">
+    <div class="form-group">
+      <input class="form-control-inline" type="text" name="link" placeholder="Enter a link">
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  </form>
+
+  {% if links %}
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <!--<th scope="col">#</th> ADD WHEN SORTING IS ADDED!!!!-->
+          <th scope="col">Original Link</th>
+          <th scope="col">Shortened Link</th>
+          <th scope="col">Creation Date</th>
+          <th scope="col">Clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for link in links %}
+          <tr>
+            <td style="word-wrap: break-word; max-width: 150px;"><a href="{{ link.full_link }}">{{ link.full_link }}</a></td>
+            <td><a href="bytely.com/{{ link.short_link }}">bytely.com/{{ link.short_link }}</td>
+            <td>{{ link.date_created }}</td>
+            <td>{{ link.times_clicked }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}
