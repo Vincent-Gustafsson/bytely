@@ -8,6 +8,14 @@
   <form action="/links/create-link" method="POST">
     <div class="form-group">
       <input class="form-control-inline" type="text" name="link" placeholder="Enter a link">
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="want-custom-link">
+        <label class="form-check-label" for="want-custom-link">Custom link</label>
+      </div>
+
+      <input class="form-control-inline" type="text" name="custom-link" placeholder="MyCustomLink">
+
       <button type="submit" class="btn btn-primary">Create</button>
     </div>
   </form>
