@@ -10,7 +10,7 @@ from bytely.models import db, Link, Click
 links = Blueprint("links", __name__)
 
 
-@links.route("/create-link", methods=["POST"])
+@links.route("/links/create-link", methods=["POST"])
 @login_required
 def create_link():
     full_link = request.form.get("link")
@@ -23,8 +23,23 @@ def create_link():
     return redirect(url_for("main.dashboard"))
 
 
+@links.route("/links/delete-link/<id>", methods=["POST"])
+@login_required
+def delete_link(id):
+    link = Link.query.filter_by(id=id).first()
+
+    if link and link.user_id == current_user.id:
+        db.session.delete(link)
+        db.session.commit()
+        return redirect(url_for("main.dashboard"))
+    else:
+        print("Link doesn't exist.")
+        abort(404)
+
+
 @links.route("/<short_link>")
 def redirect_to_url(short_link):
+    print(request.remote_addr)
     # This block gets the users geolocation data.
     api_url = f"http://ip-api.com/json/{request.remote_addr}"
     r = requests.get(api_url)

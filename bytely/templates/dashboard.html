@@ -5,7 +5,7 @@
     Welcome, {{ user.username }}
   </h1>
 
-  <form action="/create-link" method="POST">
+  <form action="/links/create-link" method="POST">
     <div class="form-group">
       <input class="form-control-inline" type="text" name="link" placeholder="Enter a link">
       <button type="submit" class="btn btn-primary">Create</button>
@@ -21,15 +21,17 @@
           <th scope="col">Shortened Link</th>
           <th scope="col">Creation Date</th>
           <th scope="col">Clicks</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         {% for link in links %}
           <tr>
-            <td style="word-wrap: break-word; max-width: 150px;"><a href="{{ link.full_link }}">{{ link.full_link }}</a></td>
+            <td><a class="full-link-td" href="{{ link.full_link }}">{{ link.full_link }}</a></td>
             <td><a href="{{ host }}{{ link.short_link }}">{{ host }}{{ link.short_link }}</td>
-            <td>{{ link.date_created }}</td>
+            <td>{{ link.date_created.strftime("%Y %B %d %H:%M") }}</td>
             <td>{{ link.amount }}</td>
+            <td><a class="btn btn-primary" href="{{ url_for('main.details', id=link.id) }}">Details</a><form action="{{ url_for('links.delete_link', id=link.id) }}" method="POST"><input class="btn btn-danger" type="submit" value="Delete"></form></td>
           </tr>
         {% endfor %}
       </tbody>

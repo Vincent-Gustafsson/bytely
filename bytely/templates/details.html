@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="card" style="width: 30rem;">
+        <div class="card-header">
+          Details
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ link.full_link }}</li>
+          <li class="list-group-item">{{ host }}{{ link.short_link }}</li>
+          <li class="list-group-item"><b>Created</b> {{ link.date_created.strftime("%Y %B %d %H:%M") }}</li>
+          <li class="list-group-item"><b>Clicks</b> {{ link.amount }}</li>
+        </ul>
+      </div>
+
+    {% if link.clicks %}
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for click in link.clicks %}
+          <tr>
+            <td>{{ click.date_created.strftime("%Y %B %d %H:%M") }}</td>
+            <td>{{ click.country }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}
