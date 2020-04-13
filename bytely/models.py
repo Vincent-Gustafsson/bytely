@@ -26,7 +26,7 @@ class User(UserMixin, db.Model):
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_link = db.Column(db.String(512))
-    short_link = db.Column(db.String(16), unique=True)
+    short_link = db.Column(db.String(32), unique=True)
     date_created = db.Column(db.DateTime, default=datetime.now)
     amount = db.Column(db.Integer, default=0)
 
@@ -35,7 +35,9 @@ class Link(db.Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.short_link = self.generate_short_link()
+
+        if self.short_link == None:
+            self.short_link = self.generate_short_link()
 
     def generate_short_link(self):
         characters = string.digits + string.ascii_letters

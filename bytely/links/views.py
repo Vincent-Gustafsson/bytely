@@ -14,8 +14,12 @@ links = Blueprint("links", __name__)
 @login_required
 def create_link():
     full_link = request.form.get("link")
+    custom_link = request.form.get("custom-link")
 
-    link = Link(full_link=full_link, user_id=current_user.id)
+    if custom_link == "":
+        custom_link = None
+
+    link = Link(full_link=full_link, short_link=custom_link, user_id=current_user.id)
 
     db.session.add(link)
     db.session.commit()
