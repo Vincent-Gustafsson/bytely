@@ -1,15 +1,15 @@
-let full_links = document.getElementsByClassName("full-link-td");
+$( ".full-link-td" ).each( function() {
+    console.log($( this ).text());
+    linkText = $( this ).text();
+    if (linkText.length > 50) {
+        console.log(1);
+        $( this ).text(linkText.slice(0, 50) + "...");
+    }
+});    
 
 const customLinkCheckbox = document.querySelector('input[name="want-custom-link"]');
 const customLinkInput = document.querySelector('input[name="custom-link"]');
 customLinkInput.style.display = "none";
-
-for (let i = 0; i < full_links.length; i++) {
-    let element = full_links[i];
-    if ( element.innerHTML.length > 50) {
-        element.innerHTML = element.innerHTML.slice(0, 50) + "...";
-    }
-}
 
 
 customLinkCheckbox.addEventListener('change', () => {

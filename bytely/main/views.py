@@ -1,8 +1,12 @@
 """Blueprint that handles the main parts e.g. the index page"""
-from flask import Blueprint, render_template, request, redirect, url_for, abort
+from datetime import datetime
+
+from flask import Blueprint, render_template, request, redirect, url_for, abort, make_response
 from flask_login import login_required, current_user
 
 from bytely.models import Link
+
+from bytely.main.utils import generate_anon_id
 
 main = Blueprint("main", __name__)
 
@@ -10,9 +14,17 @@ main = Blueprint("main", __name__)
 @main.route("/")
 def index():
     if not request.cookies.get("anon_id"):
+        anon_id = generate_anon_id()
+
+        resp = make_response(render_template("index.html"))
+        resp.set_cookie("anon_id", anon_id, expires=datetime(2030, 1, 1))
         
-        
-    return render_template("index.html")
+        return resp
+    
+    anon_id = request.cookies.get("anon_id")
+    links = Link.query.filter_by(user_id=anon_id).all()
+    print(links)
+    return render_template("index.html", links=links, host=request.url_root)
 
 
 @main.route("/dashboard")

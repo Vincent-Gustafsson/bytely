@@ -6,7 +6,7 @@ import string
 from flask_login import UserMixin
 
 from bytely import db, login_manager
-
+from bytely.utils import generate_random_string
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -40,10 +40,8 @@ class Link(db.Model):
             self.short_link = self.generate_short_link()
 
     def generate_short_link(self):
-        characters = string.digits + string.ascii_letters
-        # k is how many characters it generates.
-        short_link = ''.join(choices(characters, k=3))
-
+        short_link = generate_random_string(3)
+        
         link = self.query.filter_by(short_link=short_link).first()
 
         if link:

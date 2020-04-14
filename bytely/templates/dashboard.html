@@ -1,48 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 class="title">
-    Welcome, {{ user.username }}
-  </h1>
+<h1 class="title">
+  Welcome, {{ user.username }}
+</h1>
 
-  <form action="/links/create-link" method="POST">
-    <div class="form-group">
-      <input class="form-control-inline" type="text" name="link" placeholder="Enter a link">
+<form action="/links/create-link" method="POST">
+  <div class="form-group">
+    <input class="form-control-inline" type="text" name="link" placeholder="Enter a link">
 
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="want-custom-link">
-        <label class="form-check-label" for="want-custom-link">Custom link</label>
-      </div>
-
-      <input class="form-control-inline" type="text" name="custom-link" placeholder="MyCustomLink">
-
-      <button type="submit" class="btn btn-primary">Create</button>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="want-custom-link">
+      <label class="form-check-label" for="want-custom-link">Custom link</label>
     </div>
-  </form>
 
-  {% if links %}
-    <table class="table">
-      <thead class="thead-dark">
+    <input class="form-control-inline" type="text" name="custom-link" placeholder="MyCustomLink">
+
+    <button type="submit" class="btn btn-primary">Create</button>
+  </div>
+</form>
+
+{% if links %}
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <!--<th scope="col">#</th> ADD WHEN SORTING IS ADDED!!!!-->
+        <th scope="col">Original Link</th>
+        <th scope="col">Shortened Link</th>
+        <th scope="col">Creation Date</th>
+        <th scope="col">Clicks</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for link in links[::-1] %}
         <tr>
-          <!--<th scope="col">#</th> ADD WHEN SORTING IS ADDED!!!!-->
-          <th scope="col">Original Link</th>
-          <th scope="col">Shortened Link</th>
-          <th scope="col">Creation Date</th>
-          <th scope="col">Clicks</th>
-          <th scope="col">Actions</th>
+          <td><a class="full-link-td" href="{{ link.full_link }}">{{ link.full_link }}</a></td>
+          <td><a href="{{ host }}{{ link.short_link }}">{{ host }}{{ link.short_link }}</td>
+          <td>{{ link.date_created.strftime("%Y %B %d %H:%M") }}</td>
+          <td>{{ link.amount }}</td>
+          <td><a class="btn btn-primary" href="{{ url_for('main.details', id=link.id) }}">Details</a><form action="{{ url_for('links.delete_link', id=link.id) }}" method="POST"><input class="btn btn-danger" type="submit" value="Delete"></form></td>
         </tr>
-      </thead>
-      <tbody>
-        {% for link in links %}
-          <tr>
-            <td><a class="full-link-td" href="{{ link.full_link }}">{{ link.full_link }}</a></td>
-            <td><a href="{{ host }}{{ link.short_link }}">{{ host }}{{ link.short_link }}</td>
-            <td>{{ link.date_created.strftime("%Y %B %d %H:%M") }}</td>
-            <td>{{ link.amount }}</td>
-            <td><a class="btn btn-primary" href="{{ url_for('main.details', id=link.id) }}">Details</a><form action="{{ url_for('links.delete_link', id=link.id) }}" method="POST"><input class="btn btn-danger" type="submit" value="Delete"></form></td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
 {% endblock %}
