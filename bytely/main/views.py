@@ -9,6 +9,9 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def index():
+    if not request.cookies.get("anon_id"):
+        
+        
     return render_template("index.html")
 
 

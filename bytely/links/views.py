@@ -2,7 +2,7 @@
 import requests
 import json
 
-from flask import Blueprint, render_template, request, redirect, url_for, abort
+from flask import Blueprint, render_template, request, redirect, url_for, abort, make_response
 from flask_login import login_required, current_user
 
 from bytely.models import db, Link, Click
@@ -27,6 +27,19 @@ def create_link():
     return redirect(url_for("main.dashboard"))
 
 
+@links.route("/links/create-anonymous-link", methods=["POST"])
+def create_anonymous_link():
+    full_link = request.form.get("link")
+    anon_id = request.cookies.get("anon_id")
+
+    link = Link(full_link=full_link, user_id=anon_id)
+
+    db.session.add(link)
+    db.session.commit()
+
+    return redirect(url_for("main.dashboard"))
+
+
 @links.route("/links/delete-link/<id>", methods=["POST"])
 @login_required
 def delete_link(id):
@@ -43,7 +56,6 @@ def delete_link(id):
 
 @links.route("/<short_link>")
 def redirect_to_url(short_link):
-    print(request.remote_addr)
     # This block gets the users geolocation data.
     api_url = f"http://ip-api.com/json/{request.remote_addr}"
     r = requests.get(api_url)
