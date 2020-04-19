@@ -24,7 +24,7 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <!--<th scope="col">#</th> ADD WHEN SORTING IS ADDED!!!!-->
+        <th scope="col">Title</th>
         <th scope="col">Original Link</th>
         <th scope="col">Shortened Link</th>
         <th scope="col">Creation Date</th>
@@ -35,11 +35,29 @@
     <tbody>
       {% for link in links[::-1] %}
         <tr>
+          {% if link.title == "" %}
+            <td>No Title</td>
+          {% else %}
+            <td>{{ link.title }}</td>
+          {% endif %}
+          
           <td><a class="full-link-td" href="{{ link.full_link }}">{{ link.full_link }}</a></td>
           <td><a href="{{ host }}{{ link.short_link }}">{{ host }}{{ link.short_link }}</td>
-          <td>{{ link.date_created.strftime("%Y %B %d %H:%M") }}</td>
+          
+            <td>{{ link.date_created.strftime("%Y %B %d %H:%M") }}</td>
           <td>{{ link.amount }}</td>
-          <td><a class="btn btn-primary" href="{{ url_for('main.details', id=link.id) }}">Details</a><form action="{{ url_for('links.delete_link', id=link.id) }}" method="POST"><input class="btn btn-danger" type="submit" value="Delete"></form></td>
+          
+          <td>
+            <div class="d-inline-block">
+              <a class="btn btn-primary" href="{{ url_for('main.details', id=link.id) }}">Details</a>
+              
+              <a class="btn btn-warning" href="{{ url_for('main.edit', id=link.id) }}">Edit</a>
+
+              <form action="{{ url_for('links.delete_link', id=link.id) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
+            </div>    
+          </td>
         </tr>
       {% endfor %}
     </tbody>

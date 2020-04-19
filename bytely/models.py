@@ -25,6 +25,7 @@ class User(UserMixin, db.Model):
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(16), default="")
     full_link = db.Column(db.String(512))
     short_link = db.Column(db.String(32), unique=True)
     date_created = db.Column(db.DateTime, default=datetime.now)

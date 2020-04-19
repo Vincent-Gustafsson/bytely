@@ -2,7 +2,7 @@
     --linkform-border-color: rgb(184, 184, 184);
   }
 
-.form-control{
+.form-index{
     width: 100px;
     
     border-radius: 12px 0px 0px 12px;
@@ -31,4 +31,17 @@
     padding: 10px;
     border-radius: 12px;
     width: 100%;
+}
+
+.host-edit{
+    padding-right: 2px;
+
+    border-radius: 8px 0px 0px 8px;
+}
+
+.custom-link-edit{
+    height: 40px;
+    width: 300px;
+
+    border-radius: 0px 8px 8px 0px;
 }

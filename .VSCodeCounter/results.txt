@@ -1,0 +1,64 @@
+Date : 2020-04-18 18:36:07
+Directory : c:\Users\Vincent\Desktop\bytely
+Total : 25 files,  797 codes, 23 comments, 167 blanks, all 987 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |          7 |        253 |          3 |         28 |        284 |
+| JSON       |          1 |        242 |          0 |          1 |        243 |
+| Python     |         12 |        222 |         20 |        114 |        356 |
+| CSS        |          1 |         26 |          0 |          8 |         34 |
+| Markdown   |          1 |         21 |          0 |          9 |         30 |
+| JavaScript |          1 |         19 |          0 |          3 |         22 |
+| toml       |          1 |         13 |          0 |          4 |         17 |
+| Properties |          1 |          1 |          0 |          0 |          1 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                            | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                               |         25 |        797 |         23 |        167 |        987 |
+| bytely                                                          |         20 |        516 |         23 |        150 |        689 |
+| bytely\links                                                    |          2 |         58 |          4 |         28 |         90 |
+| bytely\main                                                     |          3 |         43 |          2 |         22 |         67 |
+| bytely\static                                                   |          2 |         45 |          0 |         11 |         56 |
+| bytely\static\scripts                                           |          1 |         19 |          0 |          3 |         22 |
+| bytely\static\styles                                            |          1 |         26 |          0 |          8 |         34 |
+| bytely\templates                                                |          7 |        253 |          3 |         28 |        284 |
+| bytely\users                                                    |          2 |         44 |          4 |         23 |         71 |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                        | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Vincent\Desktop\bytely\.gitattributes                  | Properties |          1 |          0 |          0 |          1 |
+| c:\Users\Vincent\Desktop\bytely\Pipfile                         | toml       |         13 |          0 |          4 |         17 |
+| c:\Users\Vincent\Desktop\bytely\Pipfile.lock                    | JSON       |        242 |          0 |          1 |        243 |
+| c:\Users\Vincent\Desktop\bytely\README.md                       | Markdown   |         21 |          0 |          9 |         30 |
+| c:\Users\Vincent\Desktop\bytely\bytely\__init__.py              | Python     |         23 |          1 |         14 |         38 |
+| c:\Users\Vincent\Desktop\bytely\bytely\config.py                | Python     |          5 |          1 |          3 |          9 |
+| c:\Users\Vincent\Desktop\bytely\bytely\links\__init__.py        | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\Vincent\Desktop\bytely\bytely\links\views.py           | Python     |         58 |          4 |         27 |         89 |
+| c:\Users\Vincent\Desktop\bytely\bytely\main\__init__.py         | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\Vincent\Desktop\bytely\bytely\main\utils.py            | Python     |          8 |          0 |          4 |         12 |
+| c:\Users\Vincent\Desktop\bytely\bytely\main\views.py            | Python     |         35 |          2 |         17 |         54 |
+| c:\Users\Vincent\Desktop\bytely\bytely\models.py                | Python     |         39 |          1 |         19 |         59 |
+| c:\Users\Vincent\Desktop\bytely\bytely\static\scripts\main.js   | JavaScript |         19 |          0 |          3 |         22 |
+| c:\Users\Vincent\Desktop\bytely\bytely\static\styles\main.css   | CSS        |         26 |          0 |          8 |         34 |
+| c:\Users\Vincent\Desktop\bytely\bytely\templates\404.html       | HTML       |         11 |          0 |          0 |         11 |
+| c:\Users\Vincent\Desktop\bytely\bytely\templates\base.html      | HTML       |         55 |          0 |          7 |         62 |
+| c:\Users\Vincent\Desktop\bytely\bytely\templates\dashboard.html | HTML       |         41 |          1 |          6 |         48 |
+| c:\Users\Vincent\Desktop\bytely\bytely\templates\details.html   | HTML       |         32 |          0 |          3 |         35 |
+| c:\Users\Vincent\Desktop\bytely\bytely\templates\index.html     | HTML       |         41 |          2 |          4 |         47 |
+| c:\Users\Vincent\Desktop\bytely\bytely\templates\login.html     | HTML       |         34 |          0 |          2 |         36 |
+| c:\Users\Vincent\Desktop\bytely\bytely\templates\signup.html    | HTML       |         39 |          0 |          6 |         45 |
+| c:\Users\Vincent\Desktop\bytely\bytely\users\__init__.py        | Python     |          0 |          0 |          1 |          1 |
+| c:\Users\Vincent\Desktop\bytely\bytely\users\views.py           | Python     |         44 |          4 |         22 |         70 |
+| c:\Users\Vincent\Desktop\bytely\bytely\utils.py                 | Python     |          6 |          7 |          2 |         15 |
+| c:\Users\Vincent\Desktop\bytely\run.py                          | Python     |          4 |          0 |          3 |          7 |
+| Total                                                           |            |        797 |         23 |        167 |        987 |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+

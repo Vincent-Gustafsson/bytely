@@ -51,3 +51,18 @@ def details(id):
                            user=current_user,
                            link=link,
                            host=request.url_root)
+
+
+@main.route("/edit/<id>")
+@login_required
+def edit(id):
+    link = Link.query.filter_by(id=id).first()
+
+    if current_user.id != link.user_id:
+        # Can't visit other peoples links.
+        abort(404)
+
+    return render_template("edit.html",
+                           user=current_user,
+                           link=link,
+                           host=request.url_root)

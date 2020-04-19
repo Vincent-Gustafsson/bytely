@@ -40,6 +40,26 @@ def create_anonymous_link():
     return redirect(url_for("main.index"))
 
 
+@links.route("/links/edit-link/<id>", methods=["POST"])
+@login_required
+def edit_link(id):
+    title = request.form.get("title")
+    custom_link = request.form.get("custom-link-edit")
+
+    link = Link.query.filter_by(id=id).first()
+
+    if link and link.user_id == current_user.id:
+        link.title = title
+        link.short_link= custom_link
+        
+        db.session.add(link)
+        db.session.commit()
+        return redirect(url_for("main.dashboard"))
+    else:
+        print("Link doesn't exist.")
+        abort(404)
+
+
 @links.route("/links/delete-link/<id>", methods=["POST"])
 @login_required
 def delete_link(id):
