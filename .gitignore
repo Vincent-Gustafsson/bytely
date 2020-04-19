@@ -1,4 +1,4 @@
 site.db
 .vscode/
 __pycache__/
-VSCodeCounter/
+.VSCodeCounter/
